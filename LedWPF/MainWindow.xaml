@@ -1,0 +1,26 @@
+﻿<Window x:Name="MainWindow1" x:Class="LedWPF.MainWindow"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+        xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+        xmlns:local="clr-namespace:LedWPF"
+        xmlns:c="clr-namespace:LedWPF.commands"
+        mc:Ignorable="d"
+        Title="{x:Static local:Localization.appTitle}" Height="350" Width="525">
+
+    <Window.CommandBindings>
+        <CommandBinding Command="c:CustomCommands.Exit" CanExecute="ExitCommand_CanExecute" Executed="ExitCommand_Executed" />
+    </Window.CommandBindings>
+
+    <StackPanel Orientation="Vertical">
+        <Menu>
+            <MenuItem Header="File">
+                <MenuItem Command="c:CustomCommands.Exit" />
+            </MenuItem>
+        </Menu>
+
+        <Button x:Name="buttonServerStart" Content="Start" Click="buttonServerStart_Click"/>
+        <Button x:Name="buttonServerStop" Content="Stop" Command="c:CustomCommands.Exit"/>
+
+    </StackPanel>
+</Window>

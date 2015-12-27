@@ -33,7 +33,7 @@
             this.systemTray = new System.Windows.Forms.NotifyIcon(this.components);
             this.listView1 = new System.Windows.Forms.ListView();
             this.button1 = new System.Windows.Forms.Button();
-            this.button2 = new System.Windows.Forms.Button();
+            this.buttonStartStopServer = new System.Windows.Forms.Button();
             this.button3 = new System.Windows.Forms.Button();
             this.SuspendLayout();
             // 
@@ -68,14 +68,15 @@
             this.button1.Text = "button1";
             this.button1.UseVisualStyleBackColor = true;
             // 
-            // button2
+            // buttonStartStopServer
             // 
-            this.button2.Location = new System.Drawing.Point(394, 234);
-            this.button2.Name = "button2";
-            this.button2.Size = new System.Drawing.Size(128, 32);
-            this.button2.TabIndex = 2;
-            this.button2.Text = "button2";
-            this.button2.UseVisualStyleBackColor = true;
+            this.buttonStartStopServer.Location = new System.Drawing.Point(394, 234);
+            this.buttonStartStopServer.Name = "buttonStartStopServer";
+            this.buttonStartStopServer.Size = new System.Drawing.Size(128, 32);
+            this.buttonStartStopServer.TabIndex = 2;
+            this.buttonStartStopServer.Text = "Start Server";
+            this.buttonStartStopServer.UseVisualStyleBackColor = true;
+            this.buttonStartStopServer.Click += new System.EventHandler(this.buttonStartStopServer_Click);
             // 
             // button3
             // 
@@ -92,7 +93,7 @@
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(534, 275);
             this.Controls.Add(this.button3);
-            this.Controls.Add(this.button2);
+            this.Controls.Add(this.buttonStartStopServer);
             this.Controls.Add(this.button1);
             this.Controls.Add(this.listView1);
             this.Name = "FormMain";
@@ -108,7 +109,7 @@
         private System.Windows.Forms.NotifyIcon systemTray;
         private System.Windows.Forms.ListView listView1;
         private System.Windows.Forms.Button button1;
-        private System.Windows.Forms.Button button2;
+        private System.Windows.Forms.Button buttonStartStopServer;
         private System.Windows.Forms.Button button3;
     }
 }
