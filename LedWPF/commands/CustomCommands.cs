@@ -15,7 +15,24 @@ namespace LedWPF.commands
             typeof(CustomCommands),
             new InputGestureCollection() {
                 new KeyGesture(Key.Q, ModifierKeys.Control)
-            }
-        );
+            });
+
+        public static readonly RoutedUICommand StartHttpServer = new RoutedUICommand(
+            "Start the HTTP server",
+            "StartHttpServer",
+            typeof(CustomCommands),
+            new InputGestureCollection()
+            {
+                new KeyGesture(Key.R, ModifierKeys.Control)
+            });
+
+        public static readonly RoutedUICommand StopHttpServer = new RoutedUICommand(
+            "Stop the HTTP server",
+            "StopHttpServer",
+            typeof(CustomCommands),
+            new InputGestureCollection()
+            {
+                new KeyGesture(Key.T, ModifierKeys.Control)
+            });
     }
 }

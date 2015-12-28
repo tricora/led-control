@@ -22,9 +22,14 @@ namespace LedApp
 
         private HttpServer server;
 
+        private Icon serverOffIcon;
+        private Icon serverOnIcon;
+
         public FormMain()
         {
             InitializeComponent();
+
+            LoadIcons();
 
             ledController = new LedController(50);
             SerialDevice serialDevice = new SerialDevice("COM3", 50);
@@ -32,7 +37,7 @@ namespace LedApp
             //ledController.AddDevice(new ConsoleDevice(50, 3));
             //ledController.AddDevice(new FormDevice(3, 1));
 
-            //ledController.AddDevice(serialDevice);
+            ledController.AddDevice(serialDevice);
 
             MMDeviceEnumerator devices = new MMDeviceEnumerator();
 
@@ -66,11 +71,16 @@ namespace LedApp
             timerLedUpdate.Start();
         }
 
-       
-
-        private void FormMain_FormClosing(object sender, FormClosingEventArgs e)
+        private void LoadIcons()
         {
-            
+            serverOnIcon = LedApp.Properties.Resources.ServerOn;
+            serverOffIcon = LedApp.Properties.Resources.ServerOff;
+        }
+
+        public void Shutdown()
+        {
+            systemTray.Visible = false;
+
             timerLedUpdate.Stop();
             ledController.TurnOff();
             ledController.CloseAllDevices();
@@ -79,16 +89,37 @@ namespace LedApp
             Properties.Settings.Default.Save();
 
             server.Stop();
+
+            Application.Exit();
+        }
+
+        private void MinimizeToSystemTray()
+        {
+            Hide();
+        }
+
+        private void ReturnFormSystemTray()
+        {
+            
+            Show();
+            WindowState = FormWindowState.Normal;
+        }
+       
+
+        private void FormMain_FormClosing(object sender, FormClosingEventArgs e)
+        {
+            if (e.CloseReason == CloseReason.UserClosing) {
+                if (MessageBox.Show("Do you really want to exit?", "Exit Confirmation", MessageBoxButtons.YesNo) == DialogResult.Yes)
+                {
+                    Shutdown();
+                }
+                e.Cancel = true;
+            }
         }
 
         private void timerLedUpdate_Tick(object sender, EventArgs e)
         {
             ledController.Update();
-        }
-
-        private void FormMain_Load(object sender, EventArgs e)
-        {
-            
         }
 
         private void buttonStartStopServer_Click(object sender, EventArgs e)
@@ -111,12 +142,64 @@ namespace LedApp
         {
             server.Stop();
             buttonStartStopServer.Text = "Start Server";
+            systemTray.Icon = serverOffIcon;
+            this.Icon = serverOffIcon;
         }
 
         private void StartServer()
         {
             server.Start();
             buttonStartStopServer.Text = "Stop Server";
+            systemTray.Icon = serverOnIcon;
+            this.Icon = serverOnIcon;
+        }
+
+        private void exitToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            Shutdown();
+        }
+
+        private void FormMain_Resize(object sender, EventArgs e)
+        {
+            if (WindowState == FormWindowState.Minimized)
+            {
+                MinimizeToSystemTray();
+            }
+        }
+
+        private void CreateFormDevice()
+        {
+            FormDevice dev = new FormDevice(3, 1);
+            dev.Open();
+            ledController.AddDevice(dev);
+
+            dev.FormClosing += FormDevice_Closing;
+        }
+
+        public void FormDevice_Closing(object sender, FormClosingEventArgs e)
+        {
+            FormDevice d = (FormDevice)sender;
+            ledController.RemoveDevice(d);
+            d.FormClosing -= FormDevice_Closing;
+            Console.WriteLine(ledController.DeviceCount);
+        }
+
+        private void buttonAddFormDevice_Click(object sender, EventArgs e)
+        {
+            CreateFormDevice();
+        }
+
+        private void systemTray_MouseDoubleClick(object sender, MouseEventArgs e)
+        {
+            if (e.Button != MouseButtons.Right)
+            {
+                ReturnFormSystemTray();
+            }
+        }
+
+        private void addFormDeviceToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            CreateFormDevice();
         }
     }
 }

@@ -23,6 +23,12 @@ namespace LedControl
         public LedLayerManager LedLayerManager { get; private set; }
         private TimeManager timeManager = new TimeManager();
 
+        public int DeviceCount {
+            get {
+                return devices.Count;
+            }
+        }
+
         public LedController(int ledCount)
         {
             LedLayerManager = new LedLayerManager();

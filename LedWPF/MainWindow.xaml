@@ -4,23 +4,34 @@
         xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:local="clr-namespace:LedWPF"
-        xmlns:c="clr-namespace:LedWPF.commands"
+        xmlns:cs="clr-namespace:LedWPF.commands"
         mc:Ignorable="d"
-        Title="{x:Static local:Localization.appTitle}" Height="350" Width="525">
+        Title="{x:Static local:Localization.appTitle}" Height="350" Width="525" Closing="MainWindow1_Closing">
 
     <Window.CommandBindings>
-        <CommandBinding Command="c:CustomCommands.Exit" CanExecute="ExitCommand_CanExecute" Executed="ExitCommand_Executed" />
+        <CommandBinding Command="cs:CustomCommands.Exit" Executed="ExitCommand_Executed" />
+        <CommandBinding Command="cs:CustomCommands.StartHttpServer" Executed="StartHttpServerCommand_Executed" CanExecute="StartHttpServerCommand_CanExecute" />
+        <CommandBinding Command="cs:CustomCommands.StopHttpServer" Executed="StopHttpServerCommand_Executed" CanExecute="StopHttpServerCommand_CanExecute" />
     </Window.CommandBindings>
 
-    <StackPanel Orientation="Vertical">
-        <Menu>
+    <DockPanel>
+        <Menu DockPanel.Dock="Top">
             <MenuItem Header="File">
-                <MenuItem Command="c:CustomCommands.Exit" />
+                <MenuItem Command="cs:CustomCommands.Exit"></MenuItem>
+            </MenuItem>
+            <MenuItem Header="Http Server">
+                <MenuItem Command="cs:CustomCommands.StartHttpServer"></MenuItem>
+                <MenuItem Command="cs:CustomCommands.StopHttpServer"></MenuItem>
             </MenuItem>
         </Menu>
+        
+        
+        <StackPanel Orientation="Vertical">
+            <Button x:Name="buttonServerStart" Content="Start" Command="cs:CustomCommands.StartHttpServer" />
+            <Button x:Name="buttonServerStop" Content="Stop" Command="cs:CustomCommands.StopHttpServer" />
 
-        <Button x:Name="buttonServerStart" Content="Start" Click="buttonServerStart_Click"/>
-        <Button x:Name="buttonServerStop" Content="Stop" Command="c:CustomCommands.Exit"/>
+        </StackPanel>
+    </DockPanel>
 
-    </StackPanel>
+    
 </Window>
