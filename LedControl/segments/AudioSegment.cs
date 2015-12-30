@@ -70,6 +70,7 @@ namespace LedControl.segments
             //yellow middle
             //c = new Color(0x5F, 0x3F, 0);
             c = new Color(0xCC, 0xCC, 0);
+            //c = new Color(0x33, 0, 0xCC);
             for (int i = Math.Max(0, val - 3); i < val; i++)
             {
                 Leds[i].Color = c;

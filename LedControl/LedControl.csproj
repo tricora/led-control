@@ -63,6 +63,8 @@
     <Compile Include="device\ILedDevice.cs" />
     <Compile Include="device\SerialDevice.cs" />
     <Compile Include="basics\Led.cs" />
+    <Compile Include="events\LedEvent.cs" />
+    <Compile Include="events\TimeSpanEvent.cs" />
     <Compile Include="layers\LedLayer.cs" />
     <Compile Include="layers\LedLayerManager.cs" />
     <Compile Include="LedController.cs" />

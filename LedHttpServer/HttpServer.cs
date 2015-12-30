@@ -1,4 +1,5 @@
 ﻿using System;
+using System.Collections.Concurrent;
 using System.Collections.Generic;
 using System.Linq;
 using System.Net;
@@ -12,6 +13,8 @@ namespace LedHttpServer
     {
         private HttpListener httpListener;
 
+        private ConcurrentQueue<string> messageQueue;
+
         public int Port { get; private set; }
 
 
@@ -23,11 +26,17 @@ namespace LedHttpServer
 
         public HttpServer(int port)
         {
-            Initialize(port);
+            Initialize(port, new ConcurrentQueue<string>());
         }
 
-        private void Initialize(int port)
+        public HttpServer(int port, ConcurrentQueue<string> queue)
         {
+            Initialize(port, queue);
+        }
+
+        private void Initialize(int port, ConcurrentQueue<string> queue)
+        {
+            messageQueue = queue;
             Port = port;
             httpListener = new HttpListener();
             httpListener.Prefixes.Add("http://+:" + Port.ToString() + "/");
@@ -53,17 +62,15 @@ namespace LedHttpServer
             httpListener.Stop();
         }
 
-        static void Process(IAsyncResult result)
+        void Process(IAsyncResult result)
         {
             try
             {
                 HttpListener listener = (HttpListener)result.AsyncState;
 
                 HttpListenerContext ctx = listener.EndGetContext(result);
-                Console.WriteLine("url: " + ctx.Request.Url.AbsolutePath);
-
+                messageQueue.Enqueue("test");
                 ctx.Response.Close();
-                Console.WriteLine("reqeust handling done.");
                 listener.BeginGetContext(Process, listener);
             }
             catch (Exception)
@@ -72,6 +79,6 @@ namespace LedHttpServer
             }
         }
 
-        static void 
+        //static void 
     }
 }

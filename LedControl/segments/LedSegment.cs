@@ -20,7 +20,9 @@ namespace LedControl
         private byte value = 0;
         private Color color = Color.OFF;
 
-        public SimpleLedSegment() { }
+        public SimpleLedSegment() {
+            //too allow inheritade classes to start with empty constructor
+        }
 
         public SimpleLedSegment(byte offset)
         {

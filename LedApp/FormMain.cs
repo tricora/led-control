@@ -1,10 +1,12 @@
 ﻿using LedControl;
 using LedControl.device;
+using LedControl.events;
 using LedControl.layers;
 using LedControl.segments;
 using LedHttpServer;
 using NAudio.CoreAudioApi;
 using System;
+using System.Collections.Concurrent;
 using System.Collections.Generic;
 using System.ComponentModel;
 using System.Data;
@@ -18,6 +20,9 @@ namespace LedApp
 {
     public partial class FormMain : Form
     {
+        private ConcurrentQueue<string> messageQueue = new ConcurrentQueue<string>();
+
+
         private LedController ledController;
 
         private HttpServer server;
@@ -33,7 +38,9 @@ namespace LedApp
 
             ledController = new LedController(50);
             SerialDevice serialDevice = new SerialDevice("COM3", 50);
-            serialDevice.ColorCorrection = new ColorCorrection(1, 0.3F, 1);
+
+            float brightness = 0.5f;
+            serialDevice.ColorCorrection = new ColorCorrection(1*brightness, 0.3F*brightness, 1*brightness);
             //ledController.AddDevice(new ConsoleDevice(50, 3));
             //ledController.AddDevice(new FormDevice(3, 1));
 
@@ -45,19 +52,22 @@ namespace LedApp
 
             LedLayer layer = ledController.LedLayerManager.CreateAndAddLayer();
 
-            LedSegment leftAudio = new AudioSegment(device, AudioMode.LEFT);
-            leftAudio.Delay = 0;
-            layer.Add(leftAudio, 0, 24);
-            layer.Add(new AudioSegment(device, AudioMode.RIGHT), 49, 25);
-            //layer.Add(new FlickerSegment(), 24, 25);
+            layer.Add(new AudioSegment(device, AudioMode.LEFT), 49, 36);
+            layer.Add(new AudioSegment(device, AudioMode.RIGHT), 0, 13);
+            layer.Add(new AudioSegment(device, AudioMode.LEFT), 25, 35);
+            layer.Add(new AudioSegment(device, AudioMode.RIGHT), 24, 14);
+            //layer.Add(new SimpleLedSegment(), 14, 35);
 
-            //LedLayer layer2 = ledController.LedLayerManager.CreateAndAddLayer();
-            //layer2.Add(new NightRiderSegment(LedControl.basics.Color.BLUE), 0, 49);
+            //layer.Add(new FlickerSegment(), 0, 49);
+
+
+            LedLayer layer2 = ledController.LedLayerManager.CreateAndAddLayer();
+            layer2.Add(new NightRiderSegment(LedControl.basics.Color.BLUE));
 
             ledController.OpenAllDevices();
 
 
-            server = new HttpServer(Properties.Settings.Default.server_port);
+            server = new HttpServer(Properties.Settings.Default.server_port, messageQueue);
 
             if (Properties.Settings.Default.server_running)
             {
@@ -119,6 +129,15 @@ namespace LedApp
 
         private void timerLedUpdate_Tick(object sender, EventArgs e)
         {
+            string s;
+            if (messageQueue.TryDequeue(out s)) {
+                TimeSpanEvent tse = new TimeSpanEvent(0, 20, 3000);
+                FlickerSegment fs = new FlickerSegment();
+                fs.Delay = 500;
+                tse.Add(fs);
+                ledController.AddLedEvent(tse);
+            }
+               
             ledController.Update();
         }
 

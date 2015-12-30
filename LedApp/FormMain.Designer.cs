@@ -32,13 +32,13 @@
             this.timerLedUpdate = new System.Windows.Forms.Timer(this.components);
             this.systemTray = new System.Windows.Forms.NotifyIcon(this.components);
             this.sysTryContextMenuStrip = new System.Windows.Forms.ContextMenuStrip(this.components);
+            this.addFormDeviceToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.toolStripSeparator1 = new System.Windows.Forms.ToolStripSeparator();
             this.exitToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.listView1 = new System.Windows.Forms.ListView();
             this.buttonAddFormDevice = new System.Windows.Forms.Button();
             this.buttonStartStopServer = new System.Windows.Forms.Button();
             this.button3 = new System.Windows.Forms.Button();
-            this.toolStripSeparator1 = new System.Windows.Forms.ToolStripSeparator();
-            this.addFormDeviceToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.sysTryContextMenuStrip.SuspendLayout();
             this.SuspendLayout();
             // 
@@ -61,7 +61,19 @@
             this.toolStripSeparator1,
             this.exitToolStripMenuItem});
             this.sysTryContextMenuStrip.Name = "sysTryContextMenuStrip";
-            this.sysTryContextMenuStrip.Size = new System.Drawing.Size(202, 76);
+            this.sysTryContextMenuStrip.Size = new System.Drawing.Size(202, 54);
+            // 
+            // addFormDeviceToolStripMenuItem
+            // 
+            this.addFormDeviceToolStripMenuItem.Name = "addFormDeviceToolStripMenuItem";
+            this.addFormDeviceToolStripMenuItem.Size = new System.Drawing.Size(201, 22);
+            this.addFormDeviceToolStripMenuItem.Text = "Create UI Display Device";
+            this.addFormDeviceToolStripMenuItem.Click += new System.EventHandler(this.addFormDeviceToolStripMenuItem_Click);
+            // 
+            // toolStripSeparator1
+            // 
+            this.toolStripSeparator1.Name = "toolStripSeparator1";
+            this.toolStripSeparator1.Size = new System.Drawing.Size(198, 6);
             // 
             // exitToolStripMenuItem
             // 
@@ -110,18 +122,6 @@
             this.button3.TabIndex = 3;
             this.button3.Text = "button3";
             this.button3.UseVisualStyleBackColor = true;
-            // 
-            // toolStripSeparator1
-            // 
-            this.toolStripSeparator1.Name = "toolStripSeparator1";
-            this.toolStripSeparator1.Size = new System.Drawing.Size(198, 6);
-            // 
-            // addFormDeviceToolStripMenuItem
-            // 
-            this.addFormDeviceToolStripMenuItem.Name = "addFormDeviceToolStripMenuItem";
-            this.addFormDeviceToolStripMenuItem.Size = new System.Drawing.Size(201, 22);
-            this.addFormDeviceToolStripMenuItem.Text = "Create UI Display Device";
-            this.addFormDeviceToolStripMenuItem.Click += new System.EventHandler(this.addFormDeviceToolStripMenuItem_Click);
             // 
             // FormMain
             // 

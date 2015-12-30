@@ -1,5 +1,6 @@
 ﻿using LedControl.basics;
 using LedControl.device;
+using LedControl.events;
 using LedControl.layers;
 using LedControl.time;
 using System;
@@ -16,6 +17,8 @@ namespace LedControl
 {
     public class LedController
     {
+        private LedEvent ledEvent = null;
+
         private List<LedSegment> segments = new List<LedSegment>();
 
         private List<ILedDevice> devices = new List<ILedDevice>(1);
@@ -81,6 +84,18 @@ namespace LedControl
             }
             TimeData td = timeManager.getTimeData();
             LedLayerManager.Update(td);
+
+            if (ledEvent != null)
+            {
+                if (ledEvent.IsDone)
+                {
+                    ledEvent = null;
+                } else
+                {
+                    ledEvent.Update(td);
+                }
+            }
+
             Show(LedLayerManager.Leds);
         }
 
@@ -100,6 +115,13 @@ namespace LedControl
             {
                 colors[i] = leds[i].Color;
             }
+            if (ledEvent != null && !ledEvent.IsDone)
+            {
+                for (int i = ledEvent.StartIndex; i <= Math.Min(colors.Length-1, ledEvent.EndIndex); i++)
+                {
+                    colors[i] = ledEvent.Leds[i - ledEvent.StartIndex].Color;
+                }
+            }
             foreach (ILedDevice dev in devices)
             {
                 if (dev.IsOpen())
@@ -116,6 +138,10 @@ namespace LedControl
             {
                 dev.Show(new Color[150]);
             }
+        }
+
+        public void AddLedEvent(LedEvent ledevent) {
+            ledEvent = ledevent;
         }
     }
 }

@@ -10,13 +10,18 @@ namespace LedControl.layers
 {
     public class LedLayer : Updatable
     {
-        internal Led[] Leds { get; private set; }
+        internal protected Led[] Leds { get; protected set; }
 
-        private List<LedSegment> segments = new List<LedSegment>();
+        protected List<LedSegment> segments = new List<LedSegment>();
 
         internal LedLayer(Led[] leds)
         {
             Leds = leds;
+        }
+        
+        public void Add(LedSegment seg)
+        {
+            Add(seg, 0, Leds.Length - 1);
         }
 
         public void Add(LedSegment seg, int start, int end)
