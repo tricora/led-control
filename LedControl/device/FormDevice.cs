@@ -38,6 +38,14 @@ namespace LedControl.device
             get;
         }
 
+        bool ILedDevice.IsOpen
+        {
+            get
+            {
+                return this.Visible;
+            }
+        }
+
         public void Open()
         {
             Show();
@@ -89,11 +97,6 @@ namespace LedControl.device
                 }
 
             }
-        }
-
-        public bool IsOpen()
-        {
-            return this.Visible;
         }
     }
 }

@@ -33,6 +33,14 @@ namespace LedControl.events
             }
         }
 
+        public void Reset()
+        {
+            IsDone = false;
+            OnReset();
+        }
+
+        protected void OnReset() {}
+
         protected override void OnUpdate(TimeData timeData)
         {
             if (IsDone || CheckForDone(timeData))

@@ -24,6 +24,13 @@ namespace LedControl.device
             set;
         } = new ColorCorrection(1f, 1f, 1f);
 
+        bool ILedDevice.IsOpen
+        {
+            get
+            {
+                return serialPort.IsOpen;
+            }
+        }
 
         public SerialDevice(string port, int ledCount)
         {
@@ -87,11 +94,6 @@ namespace LedControl.device
         {
             //return ((v == 0xFF) ? (byte)0xFE : v);
             return (byte)Math.Min(0xFE, v);
-        }
-
-        public bool IsOpen()
-        {
-            return serialPort.IsOpen;
         }
     }
 }

@@ -68,6 +68,14 @@ namespace LedControl.device
             set;
         } = new ColorCorrection(1f, 1f, 1f);
 
+        bool ILedDevice.IsOpen
+        {
+            get
+            {
+                return isOpen;
+            }
+        }
+
         public void Close()
         {
             isOpen = false;
@@ -159,11 +167,6 @@ namespace LedControl.device
             } 
             //Console.WriteLine(new string(s));
             return colorDict[new string(s)];
-        }
-
-        public bool IsOpen()
-        {
-            return isOpen;
         }
     }
 }

@@ -69,6 +69,7 @@ namespace LedHttpServer
                 HttpListener listener = (HttpListener)result.AsyncState;
 
                 HttpListenerContext ctx = listener.EndGetContext(result);
+                Console.WriteLine("request received");
                 messageQueue.Enqueue("test");
                 ctx.Response.Close();
                 listener.BeginGetContext(Process, listener);

@@ -33,10 +33,10 @@ namespace LedTester
 
                     ILedDevice consoleDevice = new ConsoleDevice(LED_COUNT, 3);
                     ILedDevice serialDevice = new SerialDevice("COM3", LED_COUNT);
-                    ledController.AddDevice(serialDevice);
-                    ledController.AddDevice(consoleDevice);
+                    ledController.LedDeviceManager.Add(serialDevice);
+                    ledController.LedDeviceManager.Add(consoleDevice);
 
-                    ledController.OpenAllDevices();
+                    ledController.LedDeviceManager.OpenAll();
                     
 
                     //ledController.Brightness = 0.5f;
@@ -76,7 +76,7 @@ namespace LedTester
                     Console.WriteLine(e.StackTrace);
                 } finally
                 {
-                    if (ledController != null) { ledController.CloseAllDevices(); }
+                    if (ledController != null) { ledController.LedDeviceManager.CloseAll(); }
                 }
                 
             });

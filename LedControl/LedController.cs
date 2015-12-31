@@ -21,16 +21,10 @@ namespace LedControl
 
         private List<LedSegment> segments = new List<LedSegment>();
 
-        private List<ILedDevice> devices = new List<ILedDevice>(1);
-
         public LedLayerManager LedLayerManager { get; private set; }
         private TimeManager timeManager = new TimeManager();
 
-        public int DeviceCount {
-            get {
-                return devices.Count;
-            }
-        }
+        public LedDeviceManager LedDeviceManager { get; private set; } = new LedDeviceManager();
 
         public LedController(int ledCount)
         {
@@ -46,35 +40,7 @@ namespace LedControl
 
         }
 
-        public void AddDevice(ILedDevice dev)
-        {
-            if (dev == null)
-            {
-                return;
-            }
-            if (!devices.Contains(dev))
-            {
-                devices.Add(dev);
-            }
-        }
-
-        public void RemoveDevice(ILedDevice dev)
-        {
-            if (dev == null)
-            {
-                return;
-            }
-            devices.Remove(dev);
-        }
-
-        public void OpenAllDevices()
-        {
-            foreach(ILedDevice dev in devices)
-            {
-                dev.Open();
-            }
-            timeManager.Start();
-        }
+        
 
         public void Update()
         {
@@ -99,14 +65,7 @@ namespace LedControl
             Show(LedLayerManager.Leds);
         }
 
-        public void CloseAllDevices()
-        {
-            timeManager.Stop();
-            foreach (ILedDevice dev in devices)
-            {
-                dev.Close();
-            }
-        }
+       
 
         public void Show(Led[] leds)
         {
@@ -122,9 +81,9 @@ namespace LedControl
                     colors[i] = ledEvent.Leds[i - ledEvent.StartIndex].Color;
                 }
             }
-            foreach (ILedDevice dev in devices)
+            foreach (ILedDevice dev in LedDeviceManager)
             {
-                if (dev.IsOpen())
+                if (dev.IsOpen)
                 {
                     dev.Show(colors);
                 }
@@ -134,13 +93,13 @@ namespace LedControl
         public void TurnOff()
         {
             Thread.Sleep(50);
-            foreach (ILedDevice dev in devices)
+            foreach (ILedDevice dev in LedDeviceManager)
             {
                 dev.Show(new Color[150]);
             }
         }
 
-        public void AddLedEvent(LedEvent ledevent) {
+        public void SetLedEvent(LedEvent ledevent) {
             ledEvent = ledevent;
         }
     }

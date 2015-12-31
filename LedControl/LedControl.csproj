@@ -61,6 +61,7 @@
       <DependentUpon>FormDevice.cs</DependentUpon>
     </Compile>
     <Compile Include="device\ILedDevice.cs" />
+    <Compile Include="device\LedDeviceManager.cs" />
     <Compile Include="device\SerialDevice.cs" />
     <Compile Include="basics\Led.cs" />
     <Compile Include="events\LedEvent.cs" />

@@ -7,7 +7,7 @@ namespace LedControl.device
     public interface ILedDevice
     {
         int LedCount { get; }
-        bool IsOpen();
+        bool IsOpen { get; }
         ColorCorrection ColorCorrection { get; set; }
 
         void Open();
