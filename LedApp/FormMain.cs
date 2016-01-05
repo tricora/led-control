@@ -38,17 +38,17 @@ namespace LedApp
 
             ledController = new LedController(50);
             ILedDevice serialDevice = new SerialDevice("COM3", 50);
-            ILedDevice consoleDevice = new ConsoleDevice(50, 3);
-            ILedDevice formDevice = new FormDevice(3, 1);
+            //ILedDevice consoleDevice = new ConsoleDevice(50, 3);
+            //ILedDevice formDevice = new FormDevice(3, 1);
 
             Console.WriteLine(serialDevice.GetHashCode());
-            Console.WriteLine(consoleDevice.GetHashCode());
-            Console.WriteLine(formDevice.GetHashCode());
+            //Console.WriteLine(consoleDevice.GetHashCode());
+            //Console.WriteLine(formDevice.GetHashCode());
 
-            float brightness = 0.5f;
+            float brightness = 1f;
             serialDevice.ColorCorrection = new ColorCorrection(1*brightness, 0.3F*brightness, 1*brightness);
-            ledController.LedDeviceManager.Add(consoleDevice);
-            ledController.LedDeviceManager.Add(formDevice);
+            //ledController.LedDeviceManager.Add(consoleDevice);
+            //ledController.LedDeviceManager.Add(formDevice);
 
             ledController.LedDeviceManager.Add(serialDevice);
 
@@ -58,17 +58,22 @@ namespace LedApp
 
             LedLayer layer = ledController.LedLayerManager.CreateAndAddLayer();
 
-            //layer.Add(new AudioSegment(device, AudioMode.LEFT), 49, 36);
-            //layer.Add(new AudioSegment(device, AudioMode.RIGHT), 0, 13);
-            //layer.Add(new AudioSegment(device, AudioMode.LEFT), 25, 35);
-            //layer.Add(new AudioSegment(device, AudioMode.RIGHT), 24, 14);
+            layer.Add(new AudioSegment(device, AudioMode.LEFT), 49, 36);
+            layer.Add(new AudioSegment(device, AudioMode.RIGHT), 0, 13);
+            layer.Add(new AudioSegment(device, AudioMode.LEFT), 25, 35);
+            layer.Add(new AudioSegment(device, AudioMode.RIGHT), 24, 14);
+
             //layer.Add(new SimpleLedSegment(), 14, 35);
 
-            layer.Add(new AudioSegment(device, AudioMode.MASTER), 0, 49);
+            //layer.Add(new AudioSegment(device, AudioMode.MASTER), 0, 49);
 
 
             LedLayer layer2 = ledController.LedLayerManager.CreateAndAddLayer();
-            layer2.Add(new NightRiderSegment(LedControl.basics.Color.BLUE));
+            //layer2.Add(new NightRiderSegment(LedControl.basics.Color.BLUE));
+            layer2.Add(new MultiRiderSegment(new LedControl.basics.Color( 0, 0, 30), 30, -0.3f));
+
+            //LedLayer layer3 = ledController.LedLayerManager.CreateAndAddLayer();
+            //layer3.Add(new MultiRiderSegment(new LedControl.basics.Color(30, 0, 0), 30, 0.3f));
 
             ledController.LedDeviceManager.OpenAll();
 
@@ -83,7 +88,8 @@ namespace LedApp
                 StopServer();
             }
 
-            UpdateDeviceListView();
+            deviceControl1.SetLedDeviceManager(ledController.LedDeviceManager);
+            
             timerLedUpdate.Start();
         }
 
@@ -138,9 +144,8 @@ namespace LedApp
             string s;
             while (messageQueue.TryDequeue(out s)) {
                 TimeSpanEvent tse = new TimeSpanEvent(0, 49, 10000);
-                FlickerSegment fs = new FlickerSegment();
-                fs.Delay = 500;
-                tse.Add(fs);
+                MultiRiderSegment mrs = new MultiRiderSegment(LedControl.basics.Color.GREEN, 5, 0.8f);
+                tse.Add(mrs);
                 ledController.SetLedEvent(tse);
             }
                
@@ -192,40 +197,6 @@ namespace LedApp
             }
         }
 
-        private void CreateFormDevice()
-        {
-            FormDevice dev = new FormDevice(3, 1);
-            dev.Open();
-            ledController.LedDeviceManager.Add(dev);
-
-            dev.FormClosing += FormDevice_Closing;
-
-            UpdateDeviceListView();
-        }
-
-        private void UpdateDeviceListView()
-        {
-            devicesListView.Items.Clear();
-            foreach (ILedDevice dev in ledController.LedDeviceManager)
-            {
-                devicesListView.Items.Add(new ListViewItem(new string[] { dev.GetType().Name.ToString(), dev.IsOpen.ToString() } ));
-            }
-            
-        }
-
-        public void FormDevice_Closing(object sender, FormClosingEventArgs e)
-        {
-            FormDevice d = (FormDevice)sender;
-            ledController.LedDeviceManager.Remove(d);
-            d.FormClosing -= FormDevice_Closing;
-            Console.WriteLine(ledController.LedDeviceManager.Count);
-        }
-
-        private void buttonAddFormDevice_Click(object sender, EventArgs e)
-        {
-            CreateFormDevice();
-        }
-
         private void systemTray_MouseDoubleClick(object sender, MouseEventArgs e)
         {
             if (e.Button != MouseButtons.Right)
@@ -236,7 +207,7 @@ namespace LedApp
 
         private void addFormDeviceToolStripMenuItem_Click(object sender, EventArgs e)
         {
-            CreateFormDevice();
+            
         }
     }
 }

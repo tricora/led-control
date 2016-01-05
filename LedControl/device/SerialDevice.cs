@@ -92,7 +92,6 @@ namespace LedControl.device
         [MethodImpl(MethodImplOptions.AggressiveInlining)]
         private byte ToByteAndClamp(float v)
         {
-            //return ((v == 0xFF) ? (byte)0xFE : v);
             return (byte)Math.Min(0xFE, v);
         }
     }

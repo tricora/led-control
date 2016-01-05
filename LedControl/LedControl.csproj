@@ -73,6 +73,7 @@
     <Compile Include="segments\FlickerSegment.cs" />
     <Compile Include="segments\LedSegment.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="segments\MultiRiderSegment.cs" />
     <Compile Include="segments\NightRiderSegment.cs" />
     <Compile Include="segments\BinaryWatchSegment.cs" />
     <Compile Include="time\TimeData.cs" />

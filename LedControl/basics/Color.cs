@@ -34,6 +34,11 @@ namespace LedControl.basics
         public static Color RED = new Color(0xFF, 0, 0);
         public static Color GREEN = new Color(0, 0xFF, 0);
         public static Color BLUE = new Color(0, 0, 0xFF);
+        public static Color YELLOW = new Color(0xFF, 0xFF, 0);
+        public static Color PURPLE = new Color(0xFF, 0, 0xFF);
+        public static Color CYAN = new Color(0, 0xFF, 0xFF);
+        public static Color WHITE = new Color(0xFF, 0xFF, 0xFF);
+
 
         public override bool Equals(Object o)
         {
@@ -62,5 +67,6 @@ namespace LedControl.basics
         {
             return !(a == b);
         }
+        
     }
 }
