@@ -8,5 +8,8 @@
     <Setting Name="server_port" Type="System.Int32" Scope="User">
       <Value Profile="(Default)">9000</Value>
     </Setting>
+    <Setting Name="app_is_visible" Type="System.Boolean" Scope="User">
+      <Value Profile="(Default)">True</Value>
+    </Setting>
   </Settings>
 </SettingsFile>

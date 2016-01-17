@@ -1,4 +1,5 @@
 ﻿using LedControl;
+using LedControl.audio;
 using LedControl.device;
 using LedControl.events;
 using LedControl.layers;
@@ -24,6 +25,7 @@ namespace LedApp
 
 
         private LedController ledController;
+        private AudioController audioController;
 
         private HttpServer server;
 
@@ -52,9 +54,9 @@ namespace LedApp
 
             ledController.LedDeviceManager.Add(serialDevice);
 
-            MMDeviceEnumerator devices = new MMDeviceEnumerator();
-
-            MMDevice device = devices.GetDefaultAudioEndpoint(DataFlow.Render, Role.Multimedia);
+            
+            audioController = new AudioController(this);
+            AudioDevice device = audioController.DefaultDevice;
 
             LedLayer layer = ledController.LedLayerManager.CreateAndAddLayer();
 
@@ -117,12 +119,15 @@ namespace LedApp
 
         private void MinimizeToSystemTray()
         {
+            Properties.Settings.Default.app_is_visible = false;
+            Properties.Settings.Default.Save();
             Hide();
         }
 
         private void ReturnFormSystemTray()
         {
-            
+            Properties.Settings.Default.app_is_visible = true;
+            Properties.Settings.Default.Save();
             Show();
             WindowState = FormWindowState.Normal;
         }
@@ -207,7 +212,7 @@ namespace LedApp
 
         private void addFormDeviceToolStripMenuItem_Click(object sender, EventArgs e)
         {
-            
+            deviceControl1.CreateFormDevice();
         }
     }
 }

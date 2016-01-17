@@ -47,6 +47,8 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="audio\AudioController.cs" />
+    <Compile Include="audio\AudioDevice.cs" />
     <Compile Include="basics\Color.cs" />
     <Compile Include="basics\Updatable.cs" />
     <Compile Include="blendmodes\AverageBlendMode.cs" />

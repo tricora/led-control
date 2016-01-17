@@ -46,5 +46,17 @@ namespace LedApp.Properties {
                 this["server_port"] = value;
             }
         }
+        
+        [global::System.Configuration.UserScopedSettingAttribute()]
+        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+        [global::System.Configuration.DefaultSettingValueAttribute("True")]
+        public bool app_is_visible {
+            get {
+                return ((bool)(this["app_is_visible"]));
+            }
+            set {
+                this["app_is_visible"] = value;
+            }
+        }
     }
 }

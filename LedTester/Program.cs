@@ -47,10 +47,10 @@ namespace LedTester
 
                     LedLayer layer = ledController.LedLayerManager.CreateAndAddLayer();
 
-                    LedSegment leftAudio = new AudioSegment(device, AudioMode.LEFT);
-                    leftAudio.Delay = 0;
-                    layer.Add(leftAudio, 0, 24);
-                    layer.Add(new AudioSegment(device, AudioMode.RIGHT), 49, 25);
+                    //LedSegment leftAudio = new AudioSegment(device, AudioMode.LEFT);
+                    //leftAudio.Delay = 0;
+                    //layer.Add(leftAudio, 0, 24);
+                    //layer.Add(new AudioSegment(device, AudioMode.RIGHT), 49, 25);
 
                     //layer.Add(new BinaryWatchSegment(), 24, 26);
 

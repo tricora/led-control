@@ -16,7 +16,9 @@ namespace LedApp
         {
             Application.EnableVisualStyles();
             Application.SetCompatibleTextRenderingDefault(false);
-            Application.Run(new FormMain());
+            Form form = new FormMain();
+            form.Visible = Properties.Settings.Default.app_is_visible;
+            Application.Run();            
         }
     }
 }

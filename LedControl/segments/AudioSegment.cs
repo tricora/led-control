@@ -1,4 +1,5 @@
-﻿using LedControl.basics;
+﻿using LedControl.audio;
+using LedControl.basics;
 using LedControl.time;
 using NAudio.CoreAudioApi;
 using System;
@@ -12,34 +13,38 @@ namespace LedControl.segments
     public class AudioSegment : LedSegment
     {
         private AudioMode _mode;
-        private AudioMeterInformation _meterInformation;
+        private AudioDevice audioDevice;
 
-        public AudioSegment(MMDevice device, AudioMode mode)
+        public AudioSegment(AudioDevice device, AudioMode mode)
         {
             _mode = mode;
 
-            _meterInformation = device.AudioMeterInformation;
+            audioDevice = device;
         }
-
+        
         protected override void OnUpdate(TimeData timeData)
         {
+            
             float value;
-            switch (_mode)
-            {
-                case AudioMode.LEFT:
-                    value = _meterInformation.PeakValues[0];
-                    break;
-                case AudioMode.RIGHT:
-                    value = _meterInformation.PeakValues[1];
-                    break;
-                case AudioMode.MASTER:
-                    value = _meterInformation.MasterPeakValue;
-                    break;
-                default:
-                    value = 0f;
-                    break;
-            }
-            SetLeds((int)Math.Round(value * (Leds.Length - 1)));
+
+            
+                switch (_mode)
+                {
+                    case AudioMode.LEFT:
+                        value = audioDevice.Device.AudioMeterInformation.PeakValues[0];
+                        break;
+                    case AudioMode.RIGHT:
+                        value = audioDevice.Device.AudioMeterInformation.PeakValues[1];
+                        break;
+                    case AudioMode.MASTER:
+                        value = audioDevice.Device.AudioMeterInformation.MasterPeakValue;
+                        break;
+                    default:
+                        value = 0f;
+                        break;
+                }
+                SetLeds((int)Math.Round(value * (Leds.Length - 1)));
+            
         }
 
         private void SetLeds(int val)
@@ -58,7 +63,7 @@ namespace LedControl.segments
 
             //green base
             //Color c = new Color(0x00, 0x10, 0);
-            Color c = new Color(0x00, 0x88, 0);
+            Color c = new Color(0x00, 0xFF, 0);
             for (int i = 0; i < val - 1; i++ )
             {
                 Leds[i].Color = c;
@@ -69,7 +74,7 @@ namespace LedControl.segments
 
             //yellow middle
             //c = new Color(0x5F, 0x3F, 0);
-            c = new Color(0xCC, 0xCC, 0);
+            c = new Color(0xFF, 0xFF, 0);
             //c = new Color(0x33, 0, 0xCC);
             for (int i = Math.Max(0, val - 3); i < val; i++)
             {
