@@ -63,19 +63,19 @@ namespace LedControl.segments
 
             //green base
             //Color c = new Color(0x00, 0x10, 0);
-            Color c = new Color(0x00, 0xFF, 0);
+            Color c = new Color(0x66, 0x00, 0x77);
             for (int i = 0; i < val - 1; i++ )
             {
                 Leds[i].Color = c;
             }
 
             //red max indicator
-            Leds[val].Color = Color.RED;
+            Leds[val].Color = new Color(0xFF, 0, 0x30);
 
             //yellow middle
             //c = new Color(0x5F, 0x3F, 0);
-            c = new Color(0xFF, 0xFF, 0);
-            //c = new Color(0x33, 0, 0xCC);
+            //c = new Color(0xFF, 0xFF, 0);
+            c = new Color(0xBB, 0, 0x88);
             for (int i = Math.Max(0, val - 3); i < val; i++)
             {
                 Leds[i].Color = c;

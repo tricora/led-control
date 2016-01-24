@@ -37,6 +37,7 @@
             this.exitToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.buttonStartStopServer = new System.Windows.Forms.Button();
             this.deviceControl1 = new LedApp.device.DeviceControl();
+            this.updateDefaultAudioToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.sysTryContextMenuStrip.SuspendLayout();
             this.SuspendLayout();
             // 
@@ -55,11 +56,12 @@
             // sysTryContextMenuStrip
             // 
             this.sysTryContextMenuStrip.Items.AddRange(new System.Windows.Forms.ToolStripItem[] {
+            this.updateDefaultAudioToolStripMenuItem,
             this.addFormDeviceToolStripMenuItem,
             this.toolStripSeparator1,
             this.exitToolStripMenuItem});
             this.sysTryContextMenuStrip.Name = "sysTryContextMenuStrip";
-            this.sysTryContextMenuStrip.Size = new System.Drawing.Size(202, 54);
+            this.sysTryContextMenuStrip.Size = new System.Drawing.Size(202, 98);
             // 
             // addFormDeviceToolStripMenuItem
             // 
@@ -97,6 +99,13 @@
             this.deviceControl1.Size = new System.Drawing.Size(623, 212);
             this.deviceControl1.TabIndex = 3;
             // 
+            // updateDefaultAudioToolStripMenuItem
+            // 
+            this.updateDefaultAudioToolStripMenuItem.Name = "updateDefaultAudioToolStripMenuItem";
+            this.updateDefaultAudioToolStripMenuItem.Size = new System.Drawing.Size(201, 22);
+            this.updateDefaultAudioToolStripMenuItem.Text = "Update Default Audio";
+            this.updateDefaultAudioToolStripMenuItem.Click += new System.EventHandler(this.updateDefaultAudioToolStripMenuItem_Click);
+            // 
             // FormMain
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
@@ -122,6 +131,7 @@
         private System.Windows.Forms.ToolStripMenuItem addFormDeviceToolStripMenuItem;
         private System.Windows.Forms.ToolStripSeparator toolStripSeparator1;
         private device.DeviceControl deviceControl1;
+        private System.Windows.Forms.ToolStripMenuItem updateDefaultAudioToolStripMenuItem;
     }
 }
 

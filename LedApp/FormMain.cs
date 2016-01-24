@@ -214,5 +214,10 @@ namespace LedApp
         {
             deviceControl1.CreateFormDevice();
         }
+
+        private void updateDefaultAudioToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            audioController.UpdateDefaultDevice();
+        }
     }
 }

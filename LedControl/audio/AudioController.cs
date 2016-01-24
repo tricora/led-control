@@ -22,13 +22,12 @@ namespace LedControl.audio
         {
             UpdateDefaultDevice();
             synchronizeContext = control;
-            enumerator.RegisterEndpointNotificationCallback(this);
+            //enumerator.RegisterEndpointNotificationCallback(this);
         }
 
-        private void UpdateDefaultDevice()
+        public void UpdateDefaultDevice()
         {
             DefaultDevice.Device = enumerator.GetDefaultAudioEndpoint(DataFlow.Render, Role.Multimedia);
-            Console.WriteLine(DefaultDevice.Device.DeviceFriendlyName);
         }
 
         public delegate void defaultDeviceDelegate();

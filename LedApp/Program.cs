@@ -18,7 +18,7 @@ namespace LedApp
             Application.SetCompatibleTextRenderingDefault(false);
             Form form = new FormMain();
             form.Visible = Properties.Settings.Default.app_is_visible;
-            Application.Run();            
+            Application.Run();
         }
     }
 }
