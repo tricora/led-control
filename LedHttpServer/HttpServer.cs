@@ -79,7 +79,5 @@ namespace LedHttpServer
 
             }
         }
-
-        //static void 
     }
 }
