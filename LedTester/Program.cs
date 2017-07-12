@@ -31,19 +31,19 @@ namespace LedTester
 
                     ledController = new LedController(LED_COUNT);
 
-                    ILedDevice consoleDevice = new ConsoleDevice(LED_COUNT, 3);
+                    //ILedDevice consoleDevice = new ConsoleDevice(LED_COUNT, 3);
                     ILedDevice serialDevice = new SerialDevice("COM3", LED_COUNT);
                     ledController.LedDeviceManager.Add(serialDevice);
-                    ledController.LedDeviceManager.Add(consoleDevice);
+                    //ledController.LedDeviceManager.Add(consoleDevice);
 
                     ledController.LedDeviceManager.OpenAll();
                     
 
                     //ledController.Brightness = 0.5f;
 
-                    MMDeviceEnumerator devices = new MMDeviceEnumerator();
+                    //MMDeviceEnumerator devices = new MMDeviceEnumerator();
 
-                    MMDevice device = devices.GetDefaultAudioEndpoint(DataFlow.Render, Role.Multimedia);
+                    //MMDevice device = devices.GetDefaultAudioEndpoint(DataFlow.Render, Role.Multimedia);
 
                     LedLayer layer = ledController.LedLayerManager.CreateAndAddLayer();
 
@@ -55,10 +55,10 @@ namespace LedTester
                     //layer.Add(new BinaryWatchSegment(), 24, 26);
 
                     //layer.Add(new FlickerSegment(), 24, 24);
-                    //layer.Add(new SimpleLedSegment(), 25, 25);
+                    layer.Add(new StaticSegment(Color.WHITE), 0, 49);
 
                     //LedLayer layer2 = ledController.LedLayerManager.CreateAndAddLayer();
-                    //layer2.Add(new NightRiderSegment(new Color(0, 50, 50)), 0, 49);
+                    //layer.Add(new NightRiderSegment(new Color(0, 50, 50)), 0, 49);
 
                     while (!isInterrupted)
                     {
@@ -66,7 +66,7 @@ namespace LedTester
                         Thread.Sleep(20);
                     }
 
-                    ledController.TurnOff();
+                    //ledController.TurnOff();
                     
 
                     Console.WriteLine("Thread finished");

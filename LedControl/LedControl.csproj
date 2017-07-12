@@ -78,6 +78,7 @@
     <Compile Include="segments\MultiRiderSegment.cs" />
     <Compile Include="segments\NightRiderSegment.cs" />
     <Compile Include="segments\BinaryWatchSegment.cs" />
+    <Compile Include="segments\StaticSegment.cs" />
     <Compile Include="time\TimeData.cs" />
     <Compile Include="time\TimeManager.cs" />
   </ItemGroup>
