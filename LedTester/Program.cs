@@ -33,6 +33,7 @@ namespace LedTester
 
                     //ILedDevice consoleDevice = new ConsoleDevice(LED_COUNT, 3);
                     ILedDevice serialDevice = new SerialDevice("COM3", LED_COUNT);
+                    serialDevice.ColorCorrection = new ColorCorrection(0.2f);
                     ledController.LedDeviceManager.Add(serialDevice);
                     //ledController.LedDeviceManager.Add(consoleDevice);
 

@@ -18,5 +18,9 @@ namespace LedControl.device
             G = g;
             B = b;
         }
+
+        public ColorCorrection(float a) : this(a, a, a)
+        {
+        }
     }
 }
