@@ -18,7 +18,7 @@ namespace LedControl
     public class SimpleLedSegment : LedSegment
     {
         private byte value = 0;
-        private Color color = Color.OFF;
+        private LedColor color = LedColor.OFF;
 
         public SimpleLedSegment() {
             //too allow inheritade classes to start with empty constructor
@@ -49,15 +49,15 @@ namespace LedControl
         {
             if (val < 85)
             {
-                color = new Color(val * 3, 255 - val * 3, 0);
+                color = new LedColor(val * 3, 255 - val * 3, 0);
             } else if (val < 170)
             {
                 val -= 85;
-                color = new Color(255 - val * 3, 0, val * 3);
+                color = new LedColor(255 - val * 3, 0, val * 3);
             } else
             {
                 val -= 170;
-                color = new Color(0, val * 3, 255 - val * 3);
+                color = new LedColor(0, val * 3, 255 - val * 3);
             }
         }
     }

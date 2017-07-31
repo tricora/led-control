@@ -117,7 +117,7 @@ namespace LedControl.device
             }
         }
 
-        public void Show(Color[] colors)
+        public void Show(LedColor[] colors)
         {
             if (!isOpen)
             {
@@ -149,9 +149,9 @@ namespace LedControl.device
             Console.ForegroundColor = state.color;
         }
 
-        private ConsoleColor ConvertColor(Color color)
+        private ConsoleColor ConvertColor(LedColor color)
         {
-            if (color == Color.OFF)
+            if (color == LedColor.OFF)
             {
                 return ConsoleColor.Black;
             }

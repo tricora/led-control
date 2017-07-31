@@ -13,16 +13,16 @@ namespace LedControl.segments
         private int pos = 0;
         private int direction = 1;
         private int skipper = 0;
-        private Color color;
+        private LedColor color;
 
-        public NightRiderSegment(Color c)
+        public NightRiderSegment(LedColor c)
         {
             color = c;
         }
 
         public NightRiderSegment()
         {
-            color = Color.RED;
+            color = LedColor.RED;
         }
 
         protected override void OnUpdate(TimeData timeData)
@@ -31,7 +31,7 @@ namespace LedControl.segments
             if (skipper >= 10)
             {
                 skipper = 0;
-                Leds[pos].Color = Color.OFF;
+                Leds[pos].Color = LedColor.OFF;
                 pos += direction;
                 Leds[pos].Color = color;
                 if (pos == 0 || pos == Leds.Length - 1)

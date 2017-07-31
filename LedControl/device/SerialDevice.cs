@@ -72,7 +72,7 @@ namespace LedControl.device
 
         
 
-        public void Show(Color[] colors)
+        public void Show(LedColor[] colors)
         {
             if (!serialPort.IsOpen)
             {

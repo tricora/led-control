@@ -69,7 +69,7 @@ namespace LedControl
 
         public void Show(Led[] leds)
         {
-            Color[] colors = new Color[leds.Length];
+            LedColor[] colors = new LedColor[leds.Length];
             for (int i = 0; i < colors.Length; i++)
             {
                 colors[i] = leds[i].Color;
@@ -95,7 +95,7 @@ namespace LedControl
             Thread.Sleep(50);
             foreach (ILedDevice dev in LedDeviceManager)
             {
-                dev.Show(new Color[150]);
+                dev.Show(new LedColor[150]);
             }
         }
 

@@ -9,6 +9,6 @@ namespace LedControl.blendmodes
 {
     public interface IBlendMode
     {
-        Color Blend(Color[] colors);
+        LedColor Blend(LedColor[] colors);
     }
 }

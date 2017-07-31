@@ -56,9 +56,9 @@ namespace LedControl.device
             Hide();
         }
 
-        private basics.Color[] ledColors;
+        private basics.LedColor[] ledColors;
 
-        public void Show(basics.Color[] colors)
+        public void Show(basics.LedColor[] colors)
         {
             if (!this.Visible)
             {
@@ -83,8 +83,8 @@ namespace LedControl.device
             float stripWidth = (float)(rc.Width - 2) / (ledColors.Length * ledWidth);
             for (int i = 0; i < ledColors.Length; i++)
             {
-                basics.Color c = ledColors[i];
-                if (c == basics.Color.OFF)
+                basics.LedColor c = ledColors[i];
+                if (c == basics.LedColor.OFF)
                 {
                     continue;
                 }

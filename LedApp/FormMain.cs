@@ -72,7 +72,7 @@ namespace LedApp
 
             LedLayer layer2 = ledController.LedLayerManager.CreateAndAddLayer();
             //layer2.Add(new NightRiderSegment(LedControl.basics.Color.BLUE));
-            layer2.Add(new MultiRiderSegment(new LedControl.basics.Color( 0, 0, 30), 30, -0.3f));
+            layer2.Add(new MultiRiderSegment(new LedControl.basics.LedColor( 0, 0, 30), 30, -0.3f));
 
             //LedLayer layer3 = ledController.LedLayerManager.CreateAndAddLayer();
             //layer3.Add(new MultiRiderSegment(new LedControl.basics.Color(30, 0, 0), 30, 0.3f));
@@ -149,7 +149,7 @@ namespace LedApp
             string s;
             while (messageQueue.TryDequeue(out s)) {
                 TimeSpanEvent tse = new TimeSpanEvent(0, 49, 10000);
-                MultiRiderSegment mrs = new MultiRiderSegment(LedControl.basics.Color.GREEN, 5, 0.8f);
+                MultiRiderSegment mrs = new MultiRiderSegment(LedControl.basics.LedColor.GREEN, 5, 0.8f);
                 tse.Add(mrs);
                 ledController.SetLedEvent(tse);
             }
@@ -218,6 +218,11 @@ namespace LedApp
         private void updateDefaultAudioToolStripMenuItem_Click(object sender, EventArgs e)
         {
             audioController.UpdateDefaultDevice();
+        }
+
+        private void deviceControl1_Load(object sender, EventArgs e)
+        {
+
         }
     }
 }

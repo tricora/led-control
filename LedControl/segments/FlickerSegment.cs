@@ -14,7 +14,7 @@ namespace LedControl.segments
 
         protected override void OnUpdate(TimeData timeData)
         {
-            Color c = isOn ? Color.RED : Color.GREEN;
+            LedColor c = isOn ? LedColor.RED : LedColor.GREEN;
             isOn = !isOn;
             foreach (Led led in Leds)
             {

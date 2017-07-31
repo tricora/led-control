@@ -9,7 +9,7 @@ namespace LedControl.blendmodes
 {
     class TakeFirstBlendMode : IBlendMode
     {
-        public Color Blend(Color[] colors)
+        public LedColor Blend(LedColor[] colors)
         {
             return colors[0];
         }

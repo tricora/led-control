@@ -38,7 +38,7 @@ namespace LedControl.layers
             }
             if (layers.Count > 1)
             {
-                Color[] colors = new Color[layers.Count];
+                LedColor[] colors = new LedColor[layers.Count];
                 for (int i = 0; i < Leds.Length; i++)
                 {
                     for (int j = 0; j < colors.Length; j++)

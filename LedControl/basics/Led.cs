@@ -17,7 +17,7 @@ namespace LedControl.basics
         //    set { _color = value; }
         //}
 
-        public Color Color;
+        public LedColor Color;
 
     }
 }

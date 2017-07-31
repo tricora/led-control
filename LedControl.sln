@@ -1,7 +1,7 @@
 ﻿
 Microsoft Visual Studio Solution File, Format Version 12.00
-# Visual Studio 14
-VisualStudioVersion = 14.0.23107.0
+# Visual Studio 15
+VisualStudioVersion = 15.0.26403.7
 MinimumVisualStudioVersion = 10.0.40219.1
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "LedControl", "LedControl\LedControl.csproj", "{0CD68860-E009-4595-A28D-3DDB4DCCBF1B}"
 EndProject
@@ -12,6 +12,8 @@ EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "LedHttpServer", "LedHttpServer\LedHttpServer.csproj", "{D9290B8D-18B2-4D6F-B42D-6489A2B369A2}"
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "LedWPF", "LedWPF\LedWPF.csproj", "{575CF9A0-EAE2-41FC-B17A-9A308D9CCBC3}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "LedColorChooser", "LedColorChooser\LedColorChooser.csproj", "{688AB417-0D3E-4B28-A04C-CE178E415D33}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -39,6 +41,10 @@ Global
 		{575CF9A0-EAE2-41FC-B17A-9A308D9CCBC3}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{575CF9A0-EAE2-41FC-B17A-9A308D9CCBC3}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{575CF9A0-EAE2-41FC-B17A-9A308D9CCBC3}.Release|Any CPU.Build.0 = Release|Any CPU
+		{688AB417-0D3E-4B28-A04C-CE178E415D33}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{688AB417-0D3E-4B28-A04C-CE178E415D33}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{688AB417-0D3E-4B28-A04C-CE178E415D33}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{688AB417-0D3E-4B28-A04C-CE178E415D33}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE

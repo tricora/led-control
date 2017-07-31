@@ -32,12 +32,12 @@
             this.timerLedUpdate = new System.Windows.Forms.Timer(this.components);
             this.systemTray = new System.Windows.Forms.NotifyIcon(this.components);
             this.sysTryContextMenuStrip = new System.Windows.Forms.ContextMenuStrip(this.components);
+            this.updateDefaultAudioToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.addFormDeviceToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.toolStripSeparator1 = new System.Windows.Forms.ToolStripSeparator();
             this.exitToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.buttonStartStopServer = new System.Windows.Forms.Button();
             this.deviceControl1 = new LedApp.device.DeviceControl();
-            this.updateDefaultAudioToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.sysTryContextMenuStrip.SuspendLayout();
             this.SuspendLayout();
             // 
@@ -61,7 +61,14 @@
             this.toolStripSeparator1,
             this.exitToolStripMenuItem});
             this.sysTryContextMenuStrip.Name = "sysTryContextMenuStrip";
-            this.sysTryContextMenuStrip.Size = new System.Drawing.Size(202, 98);
+            this.sysTryContextMenuStrip.Size = new System.Drawing.Size(202, 76);
+            // 
+            // updateDefaultAudioToolStripMenuItem
+            // 
+            this.updateDefaultAudioToolStripMenuItem.Name = "updateDefaultAudioToolStripMenuItem";
+            this.updateDefaultAudioToolStripMenuItem.Size = new System.Drawing.Size(201, 22);
+            this.updateDefaultAudioToolStripMenuItem.Text = "Update Default Audio";
+            this.updateDefaultAudioToolStripMenuItem.Click += new System.EventHandler(this.updateDefaultAudioToolStripMenuItem_Click);
             // 
             // addFormDeviceToolStripMenuItem
             // 
@@ -98,13 +105,7 @@
             this.deviceControl1.Name = "deviceControl1";
             this.deviceControl1.Size = new System.Drawing.Size(623, 212);
             this.deviceControl1.TabIndex = 3;
-            // 
-            // updateDefaultAudioToolStripMenuItem
-            // 
-            this.updateDefaultAudioToolStripMenuItem.Name = "updateDefaultAudioToolStripMenuItem";
-            this.updateDefaultAudioToolStripMenuItem.Size = new System.Drawing.Size(201, 22);
-            this.updateDefaultAudioToolStripMenuItem.Text = "Update Default Audio";
-            this.updateDefaultAudioToolStripMenuItem.Click += new System.EventHandler(this.updateDefaultAudioToolStripMenuItem_Click);
+            this.deviceControl1.Load += new System.EventHandler(this.deviceControl1_Load);
             // 
             // FormMain
             // 

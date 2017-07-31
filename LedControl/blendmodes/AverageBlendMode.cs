@@ -9,7 +9,7 @@ namespace LedControl.blendmodes
 {
     public class AverageBlendMode : IBlendMode
     {
-        public Color Blend(Color[] colors)
+        public LedColor Blend(LedColor[] colors)
         {
             int red = 0, green = 0, blue = 0;
             for(int i = 0; i < colors.Length; i++)
@@ -18,7 +18,7 @@ namespace LedControl.blendmodes
                 green += colors[i].G;
                 blue += colors[i].B;
             }
-            return new Color((byte)Math.Round((float)red / colors.Length), (byte)Math.Round((float)green / colors.Length), (byte)Math.Round((float)blue / colors.Length));
+            return new LedColor((byte)Math.Round((float)red / colors.Length), (byte)Math.Round((float)green / colors.Length), (byte)Math.Round((float)blue / colors.Length));
         }
     }
 }

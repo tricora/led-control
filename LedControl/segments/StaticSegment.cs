@@ -10,9 +10,9 @@ namespace LedControl.segments
 {
     public class StaticSegment : LedSegment
     {
-        private Color color;
+        public LedColor color { set; get; }
 
-        public StaticSegment(Color color)
+        public StaticSegment(LedColor color)
         {
             this.color = color;
         }

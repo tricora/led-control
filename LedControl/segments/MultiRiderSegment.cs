@@ -11,11 +11,11 @@ namespace LedControl.segments
     public class MultiRiderSegment : LedSegment
     {
         private float pos = 0;
-        private Color color = Color.WHITE;
+        private LedColor color = LedColor.WHITE;
         private int range = 5;
         private float offset = 0.5f;
 
-        public MultiRiderSegment(Color c, int range, float offset)
+        public MultiRiderSegment(LedColor c, int range, float offset)
         {
             color = c;
             this.range = range;
@@ -42,7 +42,7 @@ namespace LedControl.segments
                 float s = local / range;
                 //s = Math.Abs(1 - s);
 
-                Leds[i].Color = new Color((byte)(s * color.R), (byte)(s * color.G), (byte)(s * color.B));
+                Leds[i].Color = new LedColor((byte)(s * color.R), (byte)(s * color.G), (byte)(s * color.B));
             }
         }
     }

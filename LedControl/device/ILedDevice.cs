@@ -12,6 +12,6 @@ namespace LedControl.device
 
         void Open();
         void Close();
-        void Show(Color[] colors);
+        void Show(LedColor[] colors);
     }
 }

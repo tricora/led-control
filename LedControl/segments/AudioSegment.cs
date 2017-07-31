@@ -52,7 +52,7 @@ namespace LedControl.segments
             //clear the strip
             for (int i = val + 1; i < Leds.Length; i++)
             {
-                Leds[i].Color = Color.OFF;
+                Leds[i].Color = LedColor.OFF;
             }
 
             //make sure we write into Leds range
@@ -63,19 +63,19 @@ namespace LedControl.segments
 
             //green base
             //Color c = new Color(0x00, 0x10, 0);
-            Color c = new Color(0x66, 0x00, 0x77);
+            LedColor c = new LedColor(0x66, 0x00, 0x77);
             for (int i = 0; i < val - 1; i++ )
             {
                 Leds[i].Color = c;
             }
 
             //red max indicator
-            Leds[val].Color = new Color(0xFF, 0, 0x30);
+            Leds[val].Color = new LedColor(0xFF, 0, 0x30);
 
             //yellow middle
             //c = new Color(0x5F, 0x3F, 0);
             //c = new Color(0xFF, 0xFF, 0);
-            c = new Color(0xBB, 0, 0x88);
+            c = new LedColor(0xBB, 0, 0x88);
             for (int i = Math.Max(0, val - 3); i < val; i++)
             {
                 Leds[i].Color = c;

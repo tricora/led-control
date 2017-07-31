@@ -33,7 +33,7 @@ namespace LedTester
 
                     //ILedDevice consoleDevice = new ConsoleDevice(LED_COUNT, 3);
                     ILedDevice serialDevice = new SerialDevice("COM3", LED_COUNT);
-                    serialDevice.ColorCorrection = new ColorCorrection(0.2f);
+                    serialDevice.ColorCorrection = new ColorCorrection(1.0f);
                     ledController.LedDeviceManager.Add(serialDevice);
                     //ledController.LedDeviceManager.Add(consoleDevice);
 
@@ -56,7 +56,7 @@ namespace LedTester
                     //layer.Add(new BinaryWatchSegment(), 24, 26);
 
                     //layer.Add(new FlickerSegment(), 24, 24);
-                    layer.Add(new StaticSegment(Color.WHITE), 0, 49);
+                    layer.Add(new StaticSegment(new LedColor(255, 200, 100)), 0, 49);
 
                     //LedLayer layer2 = ledController.LedLayerManager.CreateAndAddLayer();
                     //layer.Add(new NightRiderSegment(new Color(0, 50, 50)), 0, 49);
