@@ -48,23 +48,23 @@ namespace LedColorChooser
 
                 layer.Add(segment, 0, LED_COUNT - 1);
 
-                fade(controller, segment, oldColor, dialog.Color);
+                Fade(controller, segment, oldColor, dialog.Color);
 
                 segment.color = new LedColor(dialog.Color);
                 controller.Update();
 
-                Properties.Settings.Default.color = dialog.Color;
-                Properties.Settings.Default.Save();
+                SaveColor(dialog.Color);
             }
             else
             {
                 controller.TurnOff();
+                SaveColor(Color.Black);
             }
 
             controller.LedDeviceManager.CloseAll();
         }
 
-        private static void fade(LedController controller, StaticSegment segment, Color from, Color to)
+        private static void Fade(LedController controller, StaticSegment segment, Color from, Color to)
         {
 
             for (var i = 0; i < 256; i++)
@@ -72,20 +72,25 @@ namespace LedColorChooser
                 Thread.Sleep(10);
                 double scale = (double) i / 255.0;
                 
-                Color ledColor = Color.FromArgb(1, interpolate(from.R, to.R, scale), interpolate(from.G, to.G, scale), interpolate(from.B, to.B, scale));
+                Color ledColor = Color.FromArgb(1, Interpolate(from.R, to.R, scale), Interpolate(from.G, to.G, scale), Interpolate(from.B, to.B, scale));
                 
                 segment.color = new LedColor(ledColor);
                 controller.Update();
 
-                Properties.Settings.Default.color = ledColor;
-                Properties.Settings.Default.Save();
+                SaveColor(ledColor);
             }
         }
 
-        private static byte interpolate(byte from, byte to, double val)
+        private static byte Interpolate(byte from, byte to, double val)
         {
             double result = (from + (to - from) * val);
             return Convert.ToByte(result);
+        }
+
+        private static void SaveColor(Color color)
+        {
+            Properties.Settings.Default.color = color;
+            Properties.Settings.Default.Save();
         }
     }
 }
